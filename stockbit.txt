@@ -1,0 +1,94 @@
+1.
+create table USER (ID integer, UserName varchar(100), Parent integer);
+insert into USER (ID, UserName, parent) values (1, 'Ali', 2);
+insert into USER (ID, UserName, parent) values (2, 'Budi', 0);
+insert into USER (ID, UserName, parent) values (3, 'Cecep', 1);
+select a.ID, a.UserName, b.UserName AS ParentName
+	from USER AS a
+	left join USER AS b
+	on a.Parent=b.ID;
+	
+2. 
+
+
+3. 
+
+func findFirstStringInBracket(str string) string {
+	if (len(str) > 0) {
+	indexFirstBracketFound := strings.Index(str,"(")
+		if indexFirstBracketFound >= 0 {
+			runes := []rune(str)
+			wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
+			indexClosingBracketFound := strings.Index(wordsAfterFirstBracket,")")
+				if indexClosingBracketFound >= 0 {
+					runes := []rune(wordsAfterFirstBracket)
+					return string(runes[1:indexClosingBracketFound-1])
+				}else{
+					return ""
+				}
+		}else{
+			return ""
+		}
+	}else{
+		return ""
+	}
+	return ""
+}
+
+
+func findFirstStringInBracket(str string) string {
+	if (len(str) > 2`) {
+	indexFirstBracketFound := strings.Index(str,"(")
+		if indexFirstBracketFound >= 0 {
+			runes := []rune(str)
+			wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
+			indexClosingBracketFound := strings.Index(wordsAfterFirstBracket,")")
+				if indexClosingBracketFound >= 0 {
+					runes := []rune(wordsAfterFirstBracket)
+					return string(runes[1:indexClosingBracketFound-1])
+				}
+		}
+	}
+	return ""
+}
+
+4.
+package main
+
+import (
+	"fmt"
+	"sort"
+	"strings"
+)
+
+var (
+	dummyDict = []string{"kita", "atik", "tika", "aku", "kia", "makan", "kua"}
+)
+
+func Anagram() {
+	list := make(map[string][]string)
+
+	for _, word := range dummyDict {
+		key := sortStr(word)
+		list[key] = append(list[key], word)
+	}
+
+	for _, words := range list {
+		for _, w := range words {
+			fmt.Print(w, " ")
+		}
+		fmt.Println()
+	}
+}
+
+func sortStr(k string) string {
+	s := strings.Split(k, "")
+	sort.Strings(s)
+
+	return strings.Join(s, "")
+}
+
+
+func main() {
+	Anagram()
+}
